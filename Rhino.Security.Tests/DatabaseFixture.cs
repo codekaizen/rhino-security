@@ -36,16 +36,17 @@ namespace Rhino.Security.Tests
 			Assert.NotNull(typeof (SQLiteConnection));
 
 			Configuration cfg = new Configuration()
-				.SetProperty(Environment.ConnectionDriver, typeof(SQLite20Driver).AssemblyQualifiedName)
-				.SetProperty(Environment.Dialect, typeof(SQLiteDialect).AssemblyQualifiedName)
-				//.SetProperty(Environment.ConnectionDriver, typeof(Sql2008ClientDriver).AssemblyQualifiedName)
-				//.SetProperty(Environment.Dialect, typeof(MsSql2008Dialect).AssemblyQualifiedName)
-				.SetProperty(Environment.ConnectionString, ConnectionString)
+                //.SetProperty(Environment.ConnectionDriver, typeof(SQLite20Driver).AssemblyQualifiedName)
+                //.SetProperty(Environment.Dialect, typeof(SQLiteDialect).AssemblyQualifiedName)
+                .SetProperty(Environment.ConnectionDriver, typeof(Sql2008ClientDriver).AssemblyQualifiedName)
+                .SetProperty(Environment.Dialect, typeof(MsSql2008Dialect).AssemblyQualifiedName)
+                .SetProperty(Environment.ConnectionString, ConnectionString)
 				//.SetProperty(Environment.ProxyFactoryFactoryClass, typeof(ProxyFactoryFactory).AssemblyQualifiedName)
 				.SetProperty(Environment.ReleaseConnections, "on_close")
 				.SetProperty(Environment.UseSecondLevelCache, "true")
 				.SetProperty(Environment.UseQueryCache, "true")
 				.SetProperty(Environment.CacheProvider, typeof (HashtableCacheProvider).AssemblyQualifiedName)
+                .SetProperty(Environment.ShowSql, "true")
 				.AddAssembly(typeof (User).Assembly);
 
 			Security.Configure<User>(cfg, SecurityTableStructure.Prefix);
@@ -65,7 +66,8 @@ namespace Rhino.Security.Tests
 
 		public virtual string ConnectionString
 		{
-			get { return "Data Source=:memory:"; }
+            //get { return "Data Source=:memory:"; }
+            get { return @"Data Source=(localdb)\v11.0;Integrated Security=SSPI;Initial Catalog=rstest"; }
 		}
 
 		#region IDisposable Members
