@@ -1,5 +1,6 @@
 using System;
 using System.Data.SQLite;
+using System.Threading;
 using CommonServiceLocator;
 using NHibernate;
 using NHibernate.Cache;
@@ -24,11 +25,13 @@ namespace Rhino.Security.Tests
 
 		protected ISession session;
 		protected User user;
+	    private static Object sync = new Object();
 
 		protected DatabaseFixture()
 		{
 			BeforeSetup();
 
+            Monitor.Enter(sync);
 			SillyContainer.SessionProvider = (() => session);
 			var sillyContainer = new SillyContainer();
 			ServiceLocator.SetLocatorProvider(() => sillyContainer);
@@ -73,9 +76,16 @@ namespace Rhino.Security.Tests
 
 		public virtual void Dispose()
 		{
-			if (session.Transaction.IsActive)
-				session.Transaction.Rollback();
-			session.Dispose();
+		    try
+		    {
+		        if (session.Transaction.IsActive)
+		            session.Transaction.Rollback();
+		        session.Dispose();
+            }
+		    finally
+		    {
+		        Monitor.Exit(sync);
+		    }
 		}
 
 		#endregion
