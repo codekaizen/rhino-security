@@ -19,7 +19,7 @@ namespace Rhino.Security
 	    /// <inheritdoc />
 	    public Task<bool> OnPreDeleteAsync(PreDeleteEvent @event, CancellationToken cancellationToken)
 	    {
-	        throw new NotImplementedException();
+	        return Task.Run(() => OnPreDelete(@event), cancellationToken);
 	    }
 
 	    /// <summary>

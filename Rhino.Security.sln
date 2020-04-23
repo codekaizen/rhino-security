@@ -1,6 +1,7 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhino.Security", "Rhino.Security\Rhino.Security.csproj", "{DBA372FE-3D52-45B3-AF82-B37696328764}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rhino.Security.Tests", "Rhino.Security.Tests\Rhino.Security.Tests.csproj", "{558B3AE3-C408-4DB0-AC79-386BC12379BE}"
