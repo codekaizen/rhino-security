@@ -1,9 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>ayende-open-source.snk</AssemblyOriginatorKeyFile>
+    <Version>1.4</Version>
+    <PackageId>Rhino.Security.Esha</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Model\EntitiesGroup.hbm.xml" />
